@@ -1,4 +1,6 @@
-ionic-yt-demo
-=============
+ionic-angular-cordova-seed
+==========================
 
-Demo app for playing around with Ionic, YouTube API, PhoneGap
+The perfect starting point for an Ionic project.
+
+- [Ionic Tutorials](http://ionicframework.com/tutorials/)
