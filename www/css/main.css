@@ -3,3 +3,11 @@
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
 }
+
+#coverPane {
+  background-color: black;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}

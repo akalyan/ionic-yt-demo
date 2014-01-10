@@ -64,6 +64,19 @@ angular.module('todo', ['ionic', 'ngRoute'])
 .controller('VideoCtrl', function($scope) {
   $scope.width = window.innerWidth;
   $scope.height = window.innerHeight;
+  
+  $scope.init = function() {
+    window.setInterval(function() {
+      angular.element('#coverPane').css('z-index', 100);
+      console.log("cover!");
+      window.setTimeout(function() {
+        angular.element('#coverPane').css('z-index', -1);
+        console.log("uncover");
+      }, 500);
+    }, 5000);
+  };
+  
+  $scope.init();
 })
 
 .controller('TodoCtrl', function($scope, $timeout, Modal, Projects) {
