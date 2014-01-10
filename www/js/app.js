@@ -1,4 +1,33 @@
-angular.module('todo', ['ionic'])
+/*global angular:false */
+/*jshint trailing:false */
+
+'use strict';
+
+angular.module('todo', ['ionic', 'ngRoute'])
+
+.config(function ($compileProvider){
+  // Needed for phonegap routing
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+})
+
+.config(function($routeProvider, $locationProvider) {
+
+  $routeProvider.when('/', {
+    templateUrl: 'views/default.html',
+    controller: 'TodoCtrl'
+  });
+
+  $routeProvider.when('/video/:videoId', {
+    templateUrl: 'views/video.html',
+    controller: 'VideoCtrl'
+  });
+
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+
+})
+
 /**
  * The Projects factory handles saving and loading projects
  * from local storage, and also lets us save and load the
@@ -7,14 +36,14 @@ angular.module('todo', ['ionic'])
 .factory('Projects', function() {
   return {
     all: function() {
-      var projectString = window.localStorage['projects'];
+      var projectString = window.localStorage.projects;
       if(projectString) {
         return angular.fromJson(projectString);
       }
       return [];
     },
     save: function(projects) {
-      window.localStorage['projects'] = angular.toJson(projects);
+      window.localStorage.projects = angular.toJson(projects);
     },
     newProject: function(projectTitle) {
       // Add a new project
@@ -24,12 +53,17 @@ angular.module('todo', ['ionic'])
       };
     },
     getLastActiveIndex: function() {
-      return parseInt(window.localStorage['lastActiveProject']) || 0;
+      return parseInt(window.localStorage.lastActiveProject, 10) || 0;
     },
     setLastActiveIndex: function(index) {
-      window.localStorage['lastActiveProject'] = index;
+      window.localStorage.lastActiveProject = index;
     }
-  }
+  };
+})
+
+.controller('VideoCtrl', function($scope) {
+  $scope.width = window.innerWidth;
+  $scope.height = window.innerHeight;
 })
 
 .controller('TodoCtrl', function($scope, $timeout, Modal, Projects) {
@@ -41,7 +75,7 @@ angular.module('todo', ['ionic'])
     $scope.projects.push(newProject);
     Projects.save($scope.projects);
     $scope.selectProject(newProject, $scope.projects.length-1);
-  }
+  };
 
 
   // Load or initialize projects
@@ -66,7 +100,7 @@ angular.module('todo', ['ionic'])
   };
 
   // Create our modal
-  Modal.fromTemplateUrl('new-task.html', function(modal) {
+  Modal.fromTemplateUrl('views/new-task.html', function(modal) {
     $scope.taskModal = modal;
   }, {
     scope: $scope
@@ -93,7 +127,7 @@ angular.module('todo', ['ionic'])
 
   $scope.closeNewTask = function() {
     $scope.taskModal.hide();
-  }
+  };
 
   $scope.toggleProjects = function() {
     $scope.sideMenuController.toggleLeft();

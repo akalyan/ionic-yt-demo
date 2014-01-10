@@ -1,0 +1,27 @@
+<!-- 
+<div class="bar bar-header">
+  <h1 class="title">Video Test</h1>
+</div>
+<content has-header="true">
+    <div class="card">
+      <div class="item item-divider">
+        Dimensions
+      </div>
+      <div class="item item-text-wrap">
+        Width: <span ng-bind="width"></span>
+        Height: <span ng-bind="height"></span>
+      </div>
+    </div>
+</content>
+//-->
+<div id="videoPane">
+  <iframe 
+    id="ytplayer" 
+    type="text/html" 
+    width="{{height}}"
+    height="{{width}}"
+    src="https://www.youtube.com/embed/M7lc1UVf-VE"
+    frameborder="0" 
+    allowfullscreen
+  >
+</div>
