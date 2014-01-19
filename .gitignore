@@ -1,2 +1,21 @@
-.*.sw*
-*.keystore
+node_modules
+temp
+dist
+.tmp
+.sass-cache
+phonegap/app.zip
+
+# Exclude OS X folder attributes
+.DS_Store
+
+# Exclude user-specific XCode 3 and 4 files
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+*.xcuserstate
+xcuserdata
+
