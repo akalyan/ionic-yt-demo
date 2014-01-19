@@ -7,7 +7,7 @@
     <author email="akalyan.dev@gmail.com" href="http://www.atishkalyan.com">
         akalyan.dev
     </author>
-    <content src="app/index.html" />
+    <content src="index.html" />
     <access origin="*" />
     <preference name="phonegap-version" value="3.1.0" /> 
     <preference name="webviewbounce" value="false" />
